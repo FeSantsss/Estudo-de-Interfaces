@@ -15,7 +15,7 @@ public class Program {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-		try (Scanner sc = new Scanner(System.in);) {
+		try (Scanner sc = new Scanner(System.in)) {
 
 			System.out.println("Entre com os dados do aluguel");
 
