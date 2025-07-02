@@ -1,45 +1,47 @@
 package application;
 
-import java.util.Scanner;
-import java.time.LocalDateTime;
-import java.util.Locale;
-import java.time.format.DateTimeFormatter;
+import model.entities.*;
+import model.service.*;
 
-import model.entities.CarRental;
-import model.entities.Vehicle;
-import model.service.BrazilTaxService;
-import model.service.RentalService;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Program {
 
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		try (Scanner sc = new Scanner(System.in)) {
-
-			System.out.println("Entre com os dados do aluguel");
-
-			System.out.print("Modelo do carro: ");
-			String carModel = sc.nextLine();
-			System.out.print("Retirada (dd/MM/yyyy hh:mm): ");
-			LocalDateTime start = LocalDateTime.parse(sc.nextLine(), fmt);
-			System.out.print("Retorno (dd/MM/yyyy hh:mm): ");
-			LocalDateTime finish = LocalDateTime.parse(sc.nextLine(), fmt);
-
-			CarRental car = new CarRental(start, finish, new Vehicle(carModel));
-
-			System.out.print("Entre com o preço por hora: ");
-			double pricePerHour = sc.nextDouble();
-			System.out.print("Entre com o preço por dia: ");
-			double pricePerDay = sc.nextDouble();
-
-			RentalService rentalService = new RentalService(pricePerHour, pricePerDay, new BrazilTaxService());
-			rentalService.processInvoice(car);
-
-			System.out.println(car.toString());
-		} catch (Exception e) {
+			System.out.println("Entre com os dados do contrato:");
+			
+			System.out.print("Número: ");
+			int numero = sc.nextInt();
+			System.out.print("Data (dd/MM/yyyy): ");
+			LocalDate data = LocalDate.parse(sc.next(), fmt);
+			System.out.print("Valor do contrato: ");
+			double valorContrato = sc.nextDouble();
+			
+			Contract contractInitial = new Contract(numero, data, valorContrato);
+			
+			System.out.print("Entre com o número de parcelas: ");
+			int numParcelas = sc.nextInt();
+			
+			ContractService contractService = new ContractService(new PaypalService());
+			contractService.processContract(contractInitial, numParcelas);
+			
+			System.out.println("Parcelas:");
+			for (Installment installment : contractInitial.getInstallments()) {
+				System.out.println(installment.toString());
+			}
+		}
+		catch (Exception e) {
 			System.out.println("Erro: " + e.getMessage());
 		}
+
 	}
 
 }
