@@ -1,51 +1,55 @@
-# Estudo-de-Interfaces
+# 📦 Projeto Java - Aluguel de Carros & Contrato de Serviços
 
-# 🚗 Sistema de Aluguel de Carros em Java
+Este repositório contém dois projetos desenvolvidos em Java como prática de Programação Orientada a Objetos (POO), aplicando boas práticas como separação por camadas (`entities`, `services`), uso da API de datas, cálculo de impostos e lógica de fatura. Ambos os projetos foram feitos como parte do processo de aprendizado e evolução contínua com foco em back-end.
 
-Este projeto é um sistema simples de aluguel de carros desenvolvido em Java, utilizando princípios de Programação Orientada a Objetos (POO), manipulação de datas com `java.time`, e lógica de cálculo com base em valores por hora ou por dia. Ele simula o cálculo de uma fatura com imposto baseado nas regras do Brasil.
+---
 
-## 💻 Tecnologias utilizadas
+## 🚗 Projeto 1: Aluguel de Carros
 
+Este programa simula o aluguel de um carro, calculando o valor a ser pago com base nas horas/dias de uso, e aplica imposto com base nas regras fiscais brasileiras.
+
+### ✨ Funcionalidades
+- Leitura de dados do veículo, datas de retirada e devolução
+- Cálculo do pagamento baseado em horas e diárias
+- Aplicação de imposto via classe `BrazilTaxService`
+- Geração e exibição de fatura detalhada
+
+### 🔍 Tecnologias utilizadas
 - Java 17+
-- API `java.time` (para datas e horas)
-- Padrões de projeto com POO (encapsulamento, composição, separação por camadas)
-- IDE utilizada: Eclipse (pode ser adaptado para VSCode)
+- `java.time` API (`LocalDateTime`, `Duration`, `DateTimeFormatter`)
+- Orientação a Objetos (encapsulamento, composição)
+- Separação em camadas (`model.entities`, `model.service`)
 
-## 📂 Estrutura do Projeto
+---
 
-- `application.Program`: ponto de entrada da aplicação.
-- `model.entities.CarRental`: representa o aluguel do carro, com início, fim, veículo e fatura.
-- `model.entities.Vehicle`: representa o veículo alugado.
-- `model.entities.Invoice`: representa a fatura com pagamento básico, imposto e total.
-- `model.service.RentalService`: realiza o processamento da fatura com base no tempo de aluguel.
-- `model.service.BrazilTaxService`: calcula o imposto de acordo com o valor da fatura.
+## 📃 Projeto 2: Contrato de Prestação de Serviços
 
-## ⚙️ Como funciona
+Este programa lida com a geração de parcelas mensais de pagamento a partir de um contrato, simulando serviços como PayPal para cobrança, com lógica de juros e taxas.
 
-1. O usuário insere os dados do carro, data/hora de retirada e devolução.
-2. Define o valor por hora e por dia.
-3. O sistema calcula a duração do aluguel.
-4. Com base no tempo, aplica o valor mais vantajoso (hora ou diária).
-5. Um imposto é calculado sobre o valor base.
-6. O sistema exibe uma fatura formatada no console.
+### ✨ Funcionalidades
+- Entrada de dados de contrato (número, data, valor total, número de parcelas)
+- Cálculo do valor de cada parcela com juros mensais e taxa de pagamento
+- Interface `OnlinePaymentService` para aplicar o princípio da Inversão de Dependência
+- Implementação concreta com `PaypalService`
 
-### 🧾 Exemplo de saída
+### 🔍 Tecnologias utilizadas
+- Java 17+
+- Padrões de projeto com **interfaces** e **injeção de dependência**
+- Manipulação de datas com `LocalDate` e `DateTimeFormatter`
+- Separação de responsabilidades com entidades e serviços
 
-FATURA:
-Pagamento basico: 300.00
-Imposto: 45.00
-Pagamento total: 345.00
+---
 
+## 🚀 Evolução futura do repositório
 
-## 📈 Evolução futura
+- 💾 Integração com banco de dados (JDBC e JPA)
+- 🧪 Implementação de testes unitários com JUnit
+- 🌐 Criação de APIs REST com Spring Boot
 
-Este projeto está sendo desenvolvido de forma incremental. A próxima versão incluirá:
-
-- ✅ Aplicação do princípio da Inversão de Dependência (DIP)
-- ✅ Uso de interfaces para cálculo de imposto (ex: `TaxService`)
-- ✅ Refatoração para maior flexibilidade e manutenibilidade
-- 🚀 Integração futura com banco de dados (JDBC e JPA)
+---
 
 ## 👨‍💻 Autor
 
-Projeto de estudo e prática desenvolvido por mim mesmo, com base no conteúdo do curso de Java do Nélio Alves.
+Desenvolvido por **Felipy Santos**, com base nos estudos guiados pelo curso de Java do professor Nélio Alves (Udemy), aplicando práticas reais do desenvolvimento back-end moderno.
+
+---
