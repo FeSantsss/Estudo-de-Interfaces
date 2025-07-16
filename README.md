@@ -32,19 +32,15 @@ Este programa lida com a geração de parcelas mensais de pagamento a partir de 
 - Interface `OnlinePaymentService` para aplicar o princípio da Inversão de Dependência
 - Implementação concreta com `PaypalService`
 
+## Commit "Estudo de interface Comparable": 
+
+Fiz um programa que pega nomes e salarios de um arquivo e ordena por nome em ordem alfabetica com a interface Comparable.
+
 ### 🔍 Tecnologias utilizadas
 - Java 17+
 - Padrões de projeto com **interfaces** e **injeção de dependência**
 - Manipulação de datas com `LocalDate` e `DateTimeFormatter`
 - Separação de responsabilidades com entidades e serviços
-
----
-
-## 🚀 Evolução futura do repositório
-
-- 💾 Integração com banco de dados (JDBC e JPA)
-- 🧪 Implementação de testes unitários com JUnit
-- 🌐 Criação de APIs REST com Spring Boot
 
 ---
 
