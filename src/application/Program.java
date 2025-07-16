@@ -1,47 +1,36 @@
 package application;
 
-import model.entities.*;
-import model.service.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.util.Scanner;
+import model.entities.Employee;
 
 public class Program {
-
 	public static void main(String[] args) {
-		Locale.setDefault(Locale.US);
 		
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		List<Employee> list = new ArrayList<>();
+		String path = "/home/santsss/Documentos/in.txt";
 		
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.println("Entre com os dados do contrato:");
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+			String employeecsv = br.readLine();
 			
-			System.out.print("Número: ");
-			int numero = sc.nextInt();
-			System.out.print("Data (dd/MM/yyyy): ");
-			LocalDate data = LocalDate.parse(sc.next(), fmt);
-			System.out.print("Valor do contrato: ");
-			double valorContrato = sc.nextDouble();
-			
-			Contract contractInitial = new Contract(numero, data, valorContrato);
-			
-			System.out.print("Entre com o número de parcelas: ");
-			int numParcelas = sc.nextInt();
-			
-			ContractService contractService = new ContractService(new PaypalService());
-			contractService.processContract(contractInitial, numParcelas);
-			
-			System.out.println("Parcelas:");
-			for (Installment installment : contractInitial.getInstallments()) {
-				System.out.println(installment.toString());
+			while (employeecsv != null) {
+				String[] fields = employeecsv.split(",");
+				list.add(new Employee(fields[0], Double.parseDouble(fields[1])));
+				employeecsv = br.readLine();
 			}
+			Collections.sort(list);
+			
+			for (Employee s : list) {
+				System.out.println(s);
+			}
+			
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
 		}
-		catch (Exception e) {
-			System.out.println("Erro: " + e.getMessage());
-		}
-
 	}
-
 }
