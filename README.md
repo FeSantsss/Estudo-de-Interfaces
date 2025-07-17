@@ -36,6 +36,10 @@ Este programa lida com a geração de parcelas mensais de pagamento a partir de 
 
 Fiz um programa que pega nomes e salarios de um arquivo e ordena por nome em ordem alfabetica com a interface Comparable.
 
+## Commit "estudo de interfaces com default methods"
+
+Fiz um programa que calcula a taxa de pagamemto a partir de uma taxa mensal do Brasil e dos USA com Default Methods
+
 ### 🔍 Tecnologias utilizadas
 - Java 17+
 - Padrões de projeto com **interfaces** e **injeção de dependência**
